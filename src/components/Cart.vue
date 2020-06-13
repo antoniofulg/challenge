@@ -3,16 +3,36 @@
         <div class="modal-wrapper">
             <div class="modal-container">
                 <div class="modal-header shadow-sm">
-                    <h4 class="text-danger mt-3"><strong>Carrinho de Compras</strong></h4>
+                    <h4 class="text-danger mt-2"><strong>Carrinho de Compras</strong></h4>
+                    <button @click="$emit('hideModal')" type="button" class="btn mt-1">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-6"><h5 class="text-danger"><strong>Itens</strong></h5></div>
-                        <div class="col-6"><h5 class="text-danger"><strong>Qtd.</strong></h5></div>
+                        <div class="col-7"><h5 class="text-danger"><strong>Itens</strong></h5></div>
+                        <div class="col-5"><h5 class="text-danger"><strong>Qtd.</strong></h5></div>
                     </div>
                     <div class="row">
-                        <div class="col-6"><h5 class="text-danger"><strong>Concha azul</strong></h5></div>
-                        <div class="col-6">Ícones</div>
+                        <div class="col-7"><h5 class="text-danger"><strong>Concha azul</strong></h5></div>
+                        <div class="col-5 text-danger">
+                            <div class="row">
+                                <div class="col-3">
+                                    <i class="fas fa-minus-square"></i>
+                                </div>
+                                <div class="col-3">
+                                    1
+                                </div>
+                                <div class="col-3">
+
+                            <i class="fas fa-plus-square"></i>
+                                </div>
+                                <div class="col-3">
+
+                            <i class="fas fa-trash"></i>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer top-shadow-sm">

@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex'
 import ShopItem from '@/components/ShopItem.vue'
 
 export default {
@@ -24,30 +25,18 @@ export default {
     ShopItem
   },
 
-  data () {
-    return {
-      endpoint: 'https://paguru-challenge-api.herokuapp.com/products',
-
-      itemsList: []
-    }
+  computed: {
+    ...mapState([
+      'itemsList'
+    ])
   },
 
   methods: {
-    async getItems() {
-      try {
-        const response = await this.axios.get(`${this.endpoint}`)
-        console.log(response.data)
-        if (response.data) {
-          this.itemsList = response.data
-        }
-      } catch (error) {
-        console.log(error.response)
-      }
-    }
+    ...mapActions(['setItemsList'])
   },
 
   mounted () {
-    this.getItems()
+    this.setItemsList()
   },
   
   name: 'Store',
