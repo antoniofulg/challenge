@@ -11,6 +11,17 @@ export default new Vuex.Store({
     userName: ""
   },
   mutations: {
+    SET_CART_LIST: (state, obj = null) => {
+      console.log('chamado SET_CART_LIST')
+      console.log(obj)
+      if (obj) {
+        obj.qtd = 1
+        state.cartList.push(obj)
+      } else {
+        state.cartList = []
+      }
+    },
+
     SET_ITEMS_LIST: (state, obj) => {
       state.itemsList = obj.list
     },
@@ -20,6 +31,14 @@ export default new Vuex.Store({
     }
   },
   actions: {
+    addToCartList: ({commit}, obj) => {
+      commit('SET_CART_LIST', obj)
+    },
+
+    clearCartList: ({commit}) => {
+      commit('SET_CART_LIST')
+    },
+
     setItemsList: async ({commit}) => {
       const list = (await axios.get(`https://paguru-challenge-api.herokuapp.com/products`)).data
       commit('SET_ITEMS_LIST', {list})

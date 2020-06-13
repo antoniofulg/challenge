@@ -7,9 +7,8 @@
     <div class="row mt-5">
       <div v-for="item in itemsList" :key="item.id" class="col-4 mt-5">
         <shop-item
-          :image_url="item.image_url"
-          :name="item.name"
-          :price="item.price"
+          :item="item"
+          @addToCart="addToCart"
         ></shop-item>
       </div>
     </div>
@@ -32,7 +31,11 @@ export default {
   },
 
   methods: {
-    ...mapActions(['setItemsList'])
+    ...mapActions(['addToCartList', 'setItemsList']),
+
+    addToCart(item) {
+      this.addToCartList(item)
+    }
   },
 
   mounted () {
