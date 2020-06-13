@@ -13,12 +13,20 @@ export default new Vuex.Store({
   mutations: {
     SET_ITEMS_LIST: (state, obj) => {
       state.itemsList = obj.list
+    },
+
+    SET_USER_NAME: (state, obj) => {
+      state.userName = obj
     }
   },
   actions: {
     setItemsList: async ({commit}) => {
       const list = (await axios.get(`https://paguru-challenge-api.herokuapp.com/products`)).data
       commit('SET_ITEMS_LIST', {list})
+    },
+
+    setUserName: ({commit}, obj) => {
+      commit('SET_USER_NAME', obj)
     }
   },
   modules: {

@@ -7,9 +7,9 @@
         <form>
           <div class="form-group text-left">
             <label for="yourName"><small>Seu nome</small></label>
-            <input type="text" class="form-control rounded-0" id="yourName">
+            <input v-model="userName" type="text" class="form-control rounded-0" id="yourName">
           </div>
-          <router-link tag="button" :to="{ name: 'store' }" class="btn btn-danger btn-block py-3 px-5 rounded-0"><strong>ACESSAR LOJA</strong></router-link>
+          <button @click="login" class="btn btn-danger btn-block py-3 px-5 rounded-0"><strong>ACESSAR LOJA</strong></button>
         </form>
       </card>
     </div>
@@ -17,11 +17,27 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import Card from '@/components/Card'
 
 export default {
   components: {
     Card
+  },
+
+  data () {
+    return {
+      userName: ""
+    }
+  },
+
+  methods: {
+    ...mapActions(['setUserName']),
+
+    login () {
+      this.setUserName(this.userName)
+      this.$router.push({name: 'store'})
+    }
   },
 
   name: 'Home',

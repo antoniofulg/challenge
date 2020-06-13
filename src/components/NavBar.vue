@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-dark bg-danger py-3">
     <div class="container">
-      <a class="navbar-brand">Olá, Paguru</a>
+      <a class="navbar-brand">Olá, {{userName}}</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample05" aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -23,10 +23,20 @@
 </template>
 
 <script>
+import { mapActions, mapState } from 'vuex'
+
 export default {
+  computed: {
+    ...mapState([
+      'userName'
+    ])
+  },
+
   methods: {
+    ...mapActions(['setUserName']),
+
     logout () {
-      /** Limpar o nome na Store */
+      this.setUserName("")
       this.$router.push({name: 'home'})
     }
   }
