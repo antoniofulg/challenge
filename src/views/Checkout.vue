@@ -8,15 +8,15 @@
           </div>
           <div v-for="(item, index) in cartList" :key="item.id" class="row">
             <span v-if="index >= 1" class="col-12"><hr></span>
-            <div class="col-3 image-container">
+            <div class="col-3 col-lg-12 col-xl-3 image-container">
               <img :src="item.image_url">
             </div>
-            <div class="col-7">
-              <strong class="text-danger">
-                {{ item.name }}
-              </strong>
+            <div class="col-6 pt-3 pt-md-4 col-lg-9 pt-lg-0 col-xl-7">
+                <strong class="text-danger">
+                  {{ item.name }}
+                </strong>
             </div>
-            <div class="col-2">
+            <div class="col-3 pt-3 pt-md-4 col-lg-3 pt-lg-0 col-xl-2 text-right">
               <strong class="text-muted">
                 x{{ item.qty }}
               </strong>
