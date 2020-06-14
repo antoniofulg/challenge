@@ -34,6 +34,7 @@ export default {
     ...mapActions(['addToCartList', 'setItemsList']),
 
     addToCart(item) {
+      this.$emit('showModal')
       this.addToCartList(item)
     }
   },

@@ -2,7 +2,7 @@
 <span>
     <nav-bar @showModal="showModal = true"></nav-bar>
     <div class="container">
-        <router-view></router-view>
+        <router-view @showModal="showModal = true"></router-view>
     </div>
     <cart 
         v-if="showModal"

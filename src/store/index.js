@@ -18,10 +18,9 @@ export default new Vuex.Store({
 
     REMOVE_ITEM_CART_LIST: (state, obj = null) => {
       if (obj) {
-        const index = state.cartList.map(item => item.id === obj.id).indexOf(obj.id)
-        if (index) {
-          state.cartList.splice(index, 1)
-        }
+        const object = state.cartList.find(item => item.id === obj.id)
+        const index = state.cartList.indexOf(object)
+        state.cartList.splice(index, 1)
       } else {
         state.cartList = []
       }
@@ -32,10 +31,9 @@ export default new Vuex.Store({
       if (inCart.qty > 1) {
         inCart.qty--
       } else {
-        const index = state.cartList.map(item => item.id === obj.id).indexOf(obj.id)
-        if (index) {
-          state.cartList.splice(index, 1)
-        }
+        const object = state.cartList.find(item => item.id === obj.id)
+        const index = state.cartList.indexOf(object)
+        state.cartList.splice(index, 1)
       }
     },
 
