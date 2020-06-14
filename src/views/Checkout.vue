@@ -86,7 +86,7 @@
                 <button @click.prevent="checkout" class="btn btn-danger btn-block py-3 px-5 rounded-0"><strong>EFETUAR PAGAMENTO</strong></button>
               </div>
               <div class="col-4">
-                <router-link tag="button" to="/store" class="btn btn-outline-danger btn-block py-3 px-5 rounded-0"><strong>CANCELAR</strong></router-link>
+                <router-link tag="button" :to="{name: 'store'}" class="btn btn-outline-danger btn-block py-3 px-5 rounded-0"><strong>CANCELAR</strong></router-link>
               </div>
             </div>
           </form>

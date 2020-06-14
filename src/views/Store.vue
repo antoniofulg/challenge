@@ -4,7 +4,7 @@
       <h4 class="text-danger mt-5"><strong>CATÁLOGO DE CONCHAS</strong></h4>
     </div>
 
-    <div class="row mt-5">
+    <div class="row mt-4">
       <div v-for="item in itemsList" :key="item.id" class="col-4 mt-5">
         <shop-item
           :item="item"
