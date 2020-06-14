@@ -5,7 +5,7 @@
     </div>
 
     <div class="row mt-4">
-      <div v-for="item in itemsList" :key="item.id" class="col-4 mt-5">
+      <div v-for="item in itemsList" :key="item.id" class="offset-sm-2 col-sm-8 offset-md-0 col-md-6 col-lg-4 mt-5">
         <shop-item
           :item="item"
           @addToCart="addToCart"

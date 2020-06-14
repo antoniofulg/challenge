@@ -1,6 +1,6 @@
 <template>
   <div class="row text-center mt-5 pt-5">
-    <div class="offset-4 col-4 mt-5 pt-5">
+    <div class="col-sm-12 offset-md-3 col-md-6 offset-lg-3 col-lg-6 offset-xl-4 col-xl-4 mt-5 pt-5">
       <card :padding="true">
         <h5 class="text-danger px-4"><strong>Olá Ermitão, seja<br>bem-vindo a nossa loja</strong></h5>
         <p class="card-text text-muted">Faça o login para ter acesso<br>à loja de conchas</p>
