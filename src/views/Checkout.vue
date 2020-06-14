@@ -4,20 +4,21 @@
       <div class="col-4">
         <card>
           <div>
-            <h4 class="text-danger mt-3"><strong>RECIBO</strong></h4>
+            <h4 class="text-danger mt-3 mb-3"><strong>RECIBO</strong></h4>
           </div>
-          <div v-for="item in itemsList" :key="item.id" class="row">
-            <div class="col-4 image-container">
+          <div v-for="(item, index) in cartList" :key="item.id" class="row">
+            <span v-if="index >= 1" class="col-12"><hr></span>
+            <div class="col-3 image-container">
               <img :src="item.image_url">
             </div>
-            <div class="col-6">
+            <div class="col-7">
               <strong class="text-danger">
                 {{ item.name }}
               </strong>
             </div>
             <div class="col-2">
               <strong class="text-muted">
-                x1
+                x{{ item.qty }}
               </strong>
             </div>
           </div>
@@ -28,7 +29,7 @@
               <strong class="text-danger">TOTAL</strong>
             </div>
             <div class="col-8 text-right">
-              <strong class="text-secondary">PG$ 159,90</strong>
+              <strong class="text-secondary">PG$ {{totalPrice}}</strong>
             </div>
           </div>
         </card>
@@ -82,10 +83,10 @@
                 </div>
               </div>
               <div class="col-8">
-                <button class="btn btn-danger btn-block py-3 px-5 rounded-0"><strong>EFETUAR PAGAMENTO</strong></button>
+                <button @click.prevent="checkout" class="btn btn-danger btn-block py-3 px-5 rounded-0"><strong>EFETUAR PAGAMENTO</strong></button>
               </div>
               <div class="col-4">
-                <button class="btn btn-outline-danger btn-block py-3 px-5 rounded-0"><strong>CANCELAR</strong></button>
+                <router-link tag="button" to="/store" class="btn btn-outline-danger btn-block py-3 px-5 rounded-0"><strong>CANCELAR</strong></router-link>
               </div>
             </div>
           </form>
@@ -96,38 +97,36 @@
 </template>
 
 <script>
+import { mapActions, mapState } from 'vuex'
 import Card from '@/components/Card'
 
 export default {
   components: {Card},
 
-  data () {
-    return {
-      endpoint: 'https://paguru-challenge-api.herokuapp.com/products',
+  computed: {
+    ...mapState([
+      'cartList'
+    ]),
 
-      itemsList: []
+    totalPrice() {
+      let value = 0
+      this.cartList.map(val => {
+        value += (val.price * val.qty)
+      })
+      return value.toLocaleString('pt-BR', {'minimumFractionDigits':2,'maximumFractionDigits':2}) 
     }
   },
 
   methods: {
-    async getItems() {
-      try {
-        const response = await this.axios.get(`${this.endpoint}`)
-        console.log(response.data)
-        if (response.data) {
-          this.itemsList = response.data
-        }
-      } catch (error) {
-        console.log(error.response)
-      }
+    ...mapActions(['clearCartList']),
+    
+    checkout() {
+      this.$router.push({name: 'concluded'})
+      this.clearCartList
     }
   },
 
-  mounted () {
-    this.getItems()
-  },
-
-  name: 'Buyout',
+  name: 'Checkout',
 }
 </script>
 

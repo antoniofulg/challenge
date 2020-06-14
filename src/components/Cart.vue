@@ -24,7 +24,7 @@
                         <div class="col-5">
                             <div class="row">
                                 <div class="col-3 text-danger">
-                                    <span @click="removeItemQty(item)">
+                                    <span @click="removeItemQtyOnCartList(item)">
                                         <i class="fas fa-minus-square"></i>
                                     </span>
                                 </div>
@@ -97,16 +97,12 @@ export default {
     },
 
     methods: {
-        ...mapActions(['addToCartList', 'addItemQtyOnCartList', 'removeItemCartList', 'removeItemQtyOnCartList', 'setItemsList']),
+        ...mapActions(['addItemQtyOnCartList', 'removeItemCartList', 'removeItemQtyOnCartList']),
 
         checkout() {
             this.$emit('hideModal')
             this.$router.push({name: 'checkout'})
         },
-
-        removeItemQty(item) {
-            this.removeItemQtyOnCartList(item)
-        }
     },
 }
 </script>

@@ -9,7 +9,7 @@
             <label for="yourName"><small>Seu nome</small></label>
             <input v-model="userName" type="text" class="form-control rounded-0" id="yourName">
           </div>
-          <button @click="login" class="btn btn-danger btn-block py-3 px-5 rounded-0"><strong>ACESSAR LOJA</strong></button>
+          <button @click.prevent="login" class="btn btn-danger btn-block py-3 px-5 rounded-0"><strong>ACESSAR LOJA</strong></button>
         </form>
       </card>
     </div>
