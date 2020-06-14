@@ -1,7 +1,7 @@
 <template>
-  <nav class="navbar navbar-expand navbar-dark bg-danger py-3">
+<nav class="navbar navbar-expand navbar-dark bg-danger py-1">
     <div class="container">
-      <a class="navbar-brand">Olá, {{userName ? userName : 'Paguru'}}</a>
+      <a class="navbar-brand navbar-collapse"><i class="fas fa-circle fa-3x mr-3"></i> Olá, {{userName ? userName : 'Paguru'}}</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample05" aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
