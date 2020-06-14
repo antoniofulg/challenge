@@ -8,43 +8,68 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    <div class="row">
+                <div v-if="cartList.length > 0" class="modal-body">
+                    <div class="row mb-3">
                         <div class="col-7"><h5 class="text-danger"><strong>Itens</strong></h5></div>
                         <div class="col-5"><h5 class="text-danger"><strong>Qtd.</strong></h5></div>
                     </div>
-                    <div class="row">
-                        <div class="col-7"><h5 class="text-danger"><strong>Concha azul</strong></h5></div>
-                        <div class="col-5 text-danger">
+                    <div class="row" v-for="(item, index) in cartList" :key="item.id">
+                        <span v-if="index >= 1" class="col-12"><hr></span>
+                        <div class="col-7">
+                            <img class="mb-2" :src="item.image_url" width="200px">
+                            <h6 class="text-danger text-center"><strong>
+                                {{item.name}}
+                            </strong></h6>
+                        </div>
+                        <div class="col-5">
                             <div class="row">
-                                <div class="col-3">
-                                    <i class="fas fa-minus-square"></i>
+                                <div class="col-3 text-danger">
+                                    <span @click="removeItemQty(item)">
+                                        <i class="fas fa-minus-square"></i>
+                                    </span>
                                 </div>
                                 <div class="col-3">
-                                    1
+                                    {{item.qty}}
                                 </div>
-                                <div class="col-3">
-
-                            <i class="fas fa-plus-square"></i>
+                                <div class="col-3 text-danger">
+                                    <span @click="addItemQtyOnCartList(item)">
+                                        <i class="fas fa-plus-square"></i>
+                                    </span>
                                 </div>
-                                <div class="col-3">
-
-                            <i class="fas fa-trash"></i>
+                                <div class="col-3 text-danger">
+                                    <span @click="removeItemCartList(item)">
+                                        <i class="fas fa-trash"></i>
+                                    </span>
+                                </div>
+                                <div class="col-12">
+                                    <h6 class="text-muted text-center"><strong>
+                                        PG$ {{item.price.toLocaleString('pt-BR', {'minimumFractionDigits':2,'maximumFractionDigits':2})}}
+                                    </strong></h6>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer top-shadow-sm">
+                <div v-else class="modal-body text-center">
+                    <h6 class="text-danger mt-2"><strong>Seu carrinho de compras está vazio!</strong></h6>
+                </div>
+                <div v-if="cartList.length > 0" class="modal-footer top-shadow-sm">
                     <div class="row">
                         <div class="col-4">
                             <h5><strong class="text-danger">TOTAL</strong></h5>
                         </div>
                         <div class="col-8 text-right">
-                            <h5><strong class="text-secondary">PG$ 159,90</strong></h5>
+                            <h5><strong class="text-secondary">PG$ {{totalPrice}}</strong></h5>
                         </div>
                         <div class="col-12 mt-3">
-                            <button class="btn btn-danger btn-block py-3 px-5 rounded-0" @click="$emit('hideModal')"><strong>EFETUAR PAGAMENTO</strong></button>
+                            <button @click="checkout" class="btn btn-danger btn-block py-3 px-5 rounded-0"><strong>EFETUAR PAGAMENTO</strong></button>
+                        </div>
+                    </div>
+                </div>
+                <div v-else class="modal-footer top-shadow-sm">
+                    <div class="row">
+                        <div class="col-12">
+                            <button class="btn btn-danger btn-block py-3 px-5 rounded-0" @click="$emit('hideModal')"><strong>ADICIONAR CONCHAS AO CARRINHO</strong></button>
                         </div>
                     </div>
                 </div>
@@ -54,12 +79,35 @@
 </template>
 
 <script>
-// import Card from './Card'
+import { mapActions, mapState } from 'vuex'
 
 export default {
-    // components: {Card},
+    computed: {
+        ...mapState([
+            'cartList'
+        ]),
 
-    // props: ['id']
+        totalPrice() {
+            let value = 0
+            this.cartList.map(val => {
+                value += (val.price * val.qty)
+            })
+            return value.toLocaleString('pt-BR', {'minimumFractionDigits':2,'maximumFractionDigits':2}) 
+        }
+    },
+
+    methods: {
+        ...mapActions(['addToCartList', 'addItemQtyOnCartList', 'removeItemCartList', 'removeItemQtyOnCartList', 'setItemsList']),
+
+        checkout() {
+            this.$emit('hideModal')
+            this.$router.push({name: 'checkout'})
+        },
+
+        removeItemQty(item) {
+            this.removeItemQtyOnCartList(item)
+        }
+    },
 }
 </script>
 

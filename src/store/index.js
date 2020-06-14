@@ -11,14 +11,41 @@ export default new Vuex.Store({
     userName: ""
   },
   mutations: {
-    SET_CART_LIST: (state, obj = null) => {
-      console.log('chamado SET_CART_LIST')
-      console.log(obj)
+    ADD_ITEM_QTY_ON_CART_LIST: (state, obj) => {
+      const inCart = state.cartList.find(item => item.id === obj.id)
+      inCart.qty++
+    },
+
+    REMOVE_ITEM_CART_LIST: (state, obj = null) => {
       if (obj) {
-        obj.qtd = 1
-        state.cartList.push(obj)
+        const index = state.cartList.map(item => item.id === obj.id).indexOf(obj.id)
+        if (index) {
+          state.cartList.splice(index, 1)
+        }
       } else {
         state.cartList = []
+      }
+    },
+
+    REMOVE_ITEM_QTY_ON_CART_LIST: (state, obj) => {
+      const inCart = state.cartList.find(item => item.id === obj.id)
+      if (inCart.qty > 1) {
+        inCart.qty--
+      } else {
+        const index = state.cartList.map(item => item.id === obj.id).indexOf(obj.id)
+        if (index) {
+          state.cartList.splice(index, 1)
+        }
+      }
+    },
+
+    SET_CART_LIST: (state, obj) => {
+      const inCart = state.cartList.find(item => item.id === obj.id)
+      if (inCart) {
+        inCart.qty++;
+      } else {
+        obj.qty = 1
+        state.cartList.push(obj)
       }
     },
 
@@ -35,8 +62,20 @@ export default new Vuex.Store({
       commit('SET_CART_LIST', obj)
     },
 
+    addItemQtyOnCartList: ({commit}, obj) => {
+      commit('ADD_ITEM_QTY_ON_CART_LIST', obj)
+    },
+
     clearCartList: ({commit}) => {
-      commit('SET_CART_LIST')
+      commit('REMOVE_ITEM_CART_LIST')
+    },
+
+    removeItemCartList: ({commit}, obj) => {
+      commit('REMOVE_ITEM_CART_LIST', obj)
+    },
+
+    removeItemQtyOnCartList: ({commit}, obj) => {
+      commit('REMOVE_ITEM_QTY_ON_CART_LIST', obj)
     },
 
     setItemsList: async ({commit}) => {
