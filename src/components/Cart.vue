@@ -7,6 +7,7 @@
                 Carrinho de Compras
             </strong>
         </h4>
+        <span @click="$emit('hideModal')" class="btn ml-3 text-danger"><i class="fas fa-times"></i></span>
     </div>
   </div>
   <div class="content">
@@ -118,35 +119,173 @@ export default {
 
 <style>
 
-.wrapper {
-    margin-top: 78px;
-    position: fixed;
-    z-index: 9998;
-    top: 0;
-    right: 0;
-    height: 90%;
-    width: 20%;
-    display: table;
+@media (min-width: 1800px) {
+    .wrapper {
+        margin-top: 78px;
+        position: fixed;
+        z-index: 9998;
+        top: 0;
+        right: 0;
+        height: 90%;
+        width: 20%;
+        display: table;
+    }
+    .header, .content, .footer {
+    display: table-row;
+    }
+    .header, .footer {
+        height: 100px;
+        background: #FFF;
+    }
+    .inner {
+    display: table-cell;
+    }
+    .content .inner {
+        height: 100%;
+        position: relative;
+        background: #FFF;
+    }
+    .scrollable {
+        position: absolute;
+        left: 0; right: 0;
+        top: 0; bottom: 0;
+        overflow: auto;
+    }
 }
-.header, .content, .footer {
-  display: table-row;
+
+@media (min-width: 1200px) and (max-width: 1799px) {
+    .wrapper {
+        margin-top: 78px;
+        position: fixed;
+        z-index: 9998;
+        top: 0;
+        right: 0;
+        height: 90%;
+        width: 30%;
+        display: table;
+    }
+    .header, .content, .footer {
+    display: table-row;
+    }
+    .header, .footer {
+        height: 100px;
+        background: #FFF;
+    }
+    .inner {
+    display: table-cell;
+    }
+    .content .inner {
+        height: 100%;
+        position: relative;
+        background: #FFF;
+    }
+    .scrollable {
+        position: absolute;
+        left: 0; right: 0;
+        top: 0; bottom: 0;
+        overflow: auto;
+    }
 }
-.header, .footer {
-    height: 100px;
-    background: #FFF;
+
+@media (min-width: 992px) and (max-width: 1199px) {
+    .wrapper {
+        margin-top: 78px;
+        position: fixed;
+        z-index: 9998;
+        top: 0;
+        right: 0;
+        height: 90%;
+        width: 35%;
+        display: table;
+    }
+    .header, .content, .footer {
+    display: table-row;
+    }
+    .header, .footer {
+        height: 100px;
+        background: #FFF;
+    }
+    .inner {
+    display: table-cell;
+    }
+    .content .inner {
+        height: 100%;
+        position: relative;
+        background: #FFF;
+    }
+    .scrollable {
+        position: absolute;
+        left: 0; right: 0;
+        top: 0; bottom: 0;
+        overflow: auto;
+    }
 }
-.inner {
-  display: table-cell;
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .wrapper {
+        margin-top: 78px;
+        position: fixed;
+        z-index: 9998;
+        top: 0;
+        right: 0;
+        height: 90%;
+        width: 50%;
+        display: table;
+    }
+    .header, .content, .footer {
+    display: table-row;
+    }
+    .header, .footer {
+        height: 100px;
+        background: #FFF;
+    }
+    .inner {
+    display: table-cell;
+    }
+    .content .inner {
+        height: 100%;
+        position: relative;
+        background: #FFF;
+    }
+    .scrollable {
+        position: absolute;
+        left: 0; right: 0;
+        top: 0; bottom: 0;
+        overflow: auto;
+    }
 }
-.content .inner {
-    height: 100%;
-    position: relative;
-    background: #FFF;
-}
-.scrollable {
-    position: absolute;
-    left: 0; right: 0;
-    top: 0; bottom: 0;
-    overflow: auto;
+
+@media (min-width: 576px) and (max-width: 767px) {
+    .wrapper {
+        margin-top: 78px;
+        position: fixed;
+        z-index: 9998;
+        top: 0;
+        left: 25%;
+        height: 90%;
+        width: 50%;
+        display: table;
+    }
+    .header, .content, .footer {
+    display: table-row;
+    }
+    .header, .footer {
+        height: 100px;
+        background: #FFF;
+    }
+    .inner {
+    display: table-cell;
+    }
+    .content .inner {
+        height: 100%;
+        position: relative;
+        background: #FFF;
+    }
+    .scrollable {
+        position: absolute;
+        left: 0; right: 0;
+        top: 0; bottom: 0;
+        overflow: auto;
+    }
 }
 </style>
