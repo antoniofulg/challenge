@@ -12,8 +12,10 @@ export default new Vuex.Store({
   },
   mutations: {
     ADD_ITEM_QTY_ON_CART_LIST: (state, obj) => {
-      const inCart = state.cartList.find(item => item.id === obj.id)
-      inCart.qty++
+      const object = state.cartList.find(item => item.id === obj.id)
+      const index = state.cartList.indexOf(object)
+      object.qty++
+      Vue.set(state.cartList, index, object)
     },
 
     REMOVE_ITEM_CART_LIST: (state, obj = null) => {
@@ -27,9 +29,11 @@ export default new Vuex.Store({
     },
 
     REMOVE_ITEM_QTY_ON_CART_LIST: (state, obj) => {
-      const inCart = state.cartList.find(item => item.id === obj.id)
-      if (inCart.qty > 1) {
-        inCart.qty--
+      const object = state.cartList.find(item => item.id === obj.id)
+      if (object.qty > 1) {
+        const index = state.cartList.indexOf(object)
+        object.qty--
+        Vue.set(state.cartList, index, object)
       } else {
         const object = state.cartList.find(item => item.id === obj.id)
         const index = state.cartList.indexOf(object)
@@ -38,9 +42,11 @@ export default new Vuex.Store({
     },
 
     SET_CART_LIST: (state, obj) => {
-      const inCart = state.cartList.find(item => item.id === obj.id)
-      if (inCart) {
-        inCart.qty++;
+      const object = state.cartList.find(item => item.id === obj.id)
+      if (object) {
+        const index = state.cartList.indexOf(object)
+        object.qty++
+        Vue.set(state.cartList, index, object)
       } else {
         obj.qty = 1
         state.cartList.push(obj)
