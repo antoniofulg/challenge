@@ -8,7 +8,7 @@
         <div class="mr-auto"></div>
         <ul class="navbar-nav">
           <li class="nav-item active mr-2">
-            <a class="nav-link btn" @click="$emit('showModal')"><i class="fas fa-shopping-cart fa-lg"></i><span v-if="cartList.length > 0" class="badge badge-light text-danger ml-2">{{cartList.length}}</span></a>
+            <a class="nav-link btn" @click="$emit('showModal')"><i class="fas fa-shopping-cart fa-lg"></i><span v-if="cartList.length > 0" class="badge badge-light d-none d-sm-inline text-danger ml-2">{{cartList.length}}</span></a>
           </li>
           <li class="nav-item active">
             <a class="nav-link btn" @click="logout"><i class="fas fa-sign-out-alt fa-lg"></i></a>

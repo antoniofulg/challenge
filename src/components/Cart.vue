@@ -21,7 +21,7 @@
             <div class="row" v-for="(item, index) in cartList" :key="item.id">
                 <span v-if="index >= 1" class="col-12"><hr></span>
                 <div class="col-7">
-                    <img class="mb-2" :src="item.image_url" width="200px">
+                    <img class="mb-2" :src="item.image_url" width="100%">
                     <h6 class="text-danger text-center"><strong>
                         {{item.name}}
                     </strong></h6>
@@ -122,170 +122,84 @@ export default {
 @media (min-width: 1800px) {
     .wrapper {
         margin-top: 78px;
-        position: fixed;
-        z-index: 9998;
-        top: 0;
         right: 0;
         height: 90%;
         width: 20%;
-        display: table;
-    }
-    .header, .content, .footer {
-    display: table-row;
-    }
-    .header, .footer {
-        height: 100px;
-        background: #FFF;
-    }
-    .inner {
-    display: table-cell;
-    }
-    .content .inner {
-        height: 100%;
-        position: relative;
-        background: #FFF;
-    }
-    .scrollable {
-        position: absolute;
-        left: 0; right: 0;
-        top: 0; bottom: 0;
-        overflow: auto;
     }
 }
 
 @media (min-width: 1200px) and (max-width: 1799px) {
     .wrapper {
         margin-top: 78px;
-        position: fixed;
-        z-index: 9998;
-        top: 0;
         right: 0;
         height: 90%;
         width: 30%;
-        display: table;
-    }
-    .header, .content, .footer {
-    display: table-row;
-    }
-    .header, .footer {
-        height: 100px;
-        background: #FFF;
-    }
-    .inner {
-    display: table-cell;
-    }
-    .content .inner {
-        height: 100%;
-        position: relative;
-        background: #FFF;
-    }
-    .scrollable {
-        position: absolute;
-        left: 0; right: 0;
-        top: 0; bottom: 0;
-        overflow: auto;
     }
 }
 
 @media (min-width: 992px) and (max-width: 1199px) {
     .wrapper {
         margin-top: 78px;
-        position: fixed;
-        z-index: 9998;
-        top: 0;
         right: 0;
         height: 90%;
         width: 35%;
-        display: table;
-    }
-    .header, .content, .footer {
-    display: table-row;
-    }
-    .header, .footer {
-        height: 100px;
-        background: #FFF;
-    }
-    .inner {
-    display: table-cell;
-    }
-    .content .inner {
-        height: 100%;
-        position: relative;
-        background: #FFF;
-    }
-    .scrollable {
-        position: absolute;
-        left: 0; right: 0;
-        top: 0; bottom: 0;
-        overflow: auto;
     }
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
     .wrapper {
         margin-top: 78px;
-        position: fixed;
-        z-index: 9998;
-        top: 0;
         right: 0;
         height: 90%;
         width: 50%;
-        display: table;
-    }
-    .header, .content, .footer {
-    display: table-row;
-    }
-    .header, .footer {
-        height: 100px;
-        background: #FFF;
-    }
-    .inner {
-    display: table-cell;
-    }
-    .content .inner {
-        height: 100%;
-        position: relative;
-        background: #FFF;
-    }
-    .scrollable {
-        position: absolute;
-        left: 0; right: 0;
-        top: 0; bottom: 0;
-        overflow: auto;
     }
 }
 
 @media (min-width: 576px) and (max-width: 767px) {
     .wrapper {
         margin-top: 78px;
-        position: fixed;
-        z-index: 9998;
-        top: 0;
         left: 25%;
         height: 90%;
         width: 50%;
-        display: table;
     }
-    .header, .content, .footer {
-    display: table-row;
-    }
-    .header, .footer {
-        height: 100px;
-        background: #FFF;
-    }
-    .inner {
-    display: table-cell;
-    }
-    .content .inner {
+
+}
+
+@media (max-width: 575px) {
+    .wrapper {
+        margin-top: 0;
+        left: 0;
         height: 100%;
-        position: relative;
-        background: #FFF;
+        width: 100%;
     }
-    .scrollable {
-        position: absolute;
-        left: 0; right: 0;
-        top: 0; bottom: 0;
-        overflow: auto;
-    }
+}
+
+.wrapper {
+    position: fixed;
+    z-index: 9998;
+    top: 0;
+    display: table;
+}
+
+.header, .content, .footer {
+    display: table-row;
+}
+.header, .footer {
+    height: 100px;
+    background: #FFF;
+}
+.inner {
+display: table-cell;
+}
+.content .inner {
+    height: 100%;
+    position: relative;
+    background: #FFF;
+}
+.scrollable {
+    position: absolute;
+    left: 0; right: 0;
+    top: 0; bottom: 0;
+    overflow: auto;
 }
 </style>
